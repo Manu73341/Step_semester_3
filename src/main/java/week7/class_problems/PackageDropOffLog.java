@@ -1,0 +1,4 @@
+abstract class DeliveryNote {public abstract String confirmDelivery();public String confirmDelivery(String s){return confirmDelivery()+", signed by "+s;}}
+class ParcelNote extends DeliveryNote {private String trackingId;ParcelNote(String t){super();trackingId=t;}public String confirmDelivery(){return "Parcel "+trackingId+" delivered";}}
+class LetterNote extends DeliveryNote {private String trackingId;LetterNote(String t){super();trackingId=t;}public String confirmDelivery(){return "Letter "+trackingId+" delivered";}}
+public class PackageDropOffLog {static void logAll(DeliveryNote[] a){for(DeliveryNote n:a)System.out.println(n.confirmDelivery());}public static void main(String[] args){ParcelNote p=new ParcelNote("TRK-1");LetterNote l=new LetterNote("TRK-2");System.out.println(p.confirmDelivery());System.out.println(p.confirmDelivery("J. Smith"));DeliveryNote ref=p;logAll(new DeliveryNote[]{ref,l});}}

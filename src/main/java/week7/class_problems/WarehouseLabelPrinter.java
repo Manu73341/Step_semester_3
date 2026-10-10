@@ -1,0 +1,4 @@
+interface Printable {String printLabel();}
+class PackageBox implements Printable {private String trackingId;PackageBox(String t){trackingId=t;}public String printLabel(){return "Package label: "+trackingId;}}
+class Invoice implements Printable {private String invoiceNumber;Invoice(String i){invoiceNumber=i;}public String printLabel(){return "Invoice label: "+invoiceNumber;}}
+public class WarehouseLabelPrinter {static void printAll(Printable[] a){for(Printable p:a)System.out.println(p.printLabel());}public static void main(String[] args){PackageBox p=new PackageBox("TRK-88");Invoice i=new Invoice("INV-42");System.out.println(p.printLabel());System.out.println(i.printLabel());printAll(new Printable[]{p,i});}}

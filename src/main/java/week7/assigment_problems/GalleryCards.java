@@ -1,0 +1,4 @@
+abstract class ArtPiece {private static int counter=0;private final String pieceId;ArtPiece(){counter++;pieceId="ART-"+counter;}public abstract String describe();public String getPieceId(){return pieceId;}}
+class Painting extends ArtPiece {private String title;Painting(String t){super();title=t;}public String describe(){return "Painting: "+title+", framed on canvas";}}
+class Sculpture extends ArtPiece {private String title;Sculpture(String t){super();title=t;}public String describe(){return "Sculpture: "+title+", carved from stone";}}
+public class GalleryCards {public static void main(String[] args){Painting p=new Painting("Sunset Fields");Sculpture s=new Sculpture("The Thinker II");System.out.println(p.describe());System.out.println(s.describe());System.out.println("Painting ID: "+p.getPieceId());System.out.println("Sculpture ID: "+s.getPieceId());}}
