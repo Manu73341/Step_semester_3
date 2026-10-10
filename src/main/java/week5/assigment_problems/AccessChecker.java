@@ -1,0 +1,5 @@
+public class AccessChecker {
+ static String classifyAccess(String m,String c){switch(m){case "private":return c.equals("SAME_CLASS")?"ALLOWED":"DENIED";case "default":return c.equals("SAME_CLASS")||c.equals("SAME_PACKAGE")?"ALLOWED":"DENIED";case "protected":return c.equals("DIFFERENT_PACKAGE")?"DENIED":"ALLOWED";case "public":return "ALLOWED";default:return "DENIED";}}
+ static String summarizeByModifier(String[][] a){String[] ms={"private","default","protected","public"};int[] ok=new int[4],no=new int[4];for(String[] x:a)for(int i=0;i<ms.length;i++)if(ms[i].equals(x[0])){if(classifyAccess(x[0],x[1]).equals("ALLOWED"))ok[i]++;else no[i]++;break;}StringBuilder b=new StringBuilder();for(int i=0;i<4;i++){if(i>0)b.append(" | ");b.append(ms[i]).append(": ").append(ok[i]).append(" allowed / ").append(no[i]).append(" denied");}return b.toString();}
+ public static void main(String[] args){String[][] a={{"private","SAME_CLASS"},{"private","SAME_PACKAGE"},{"default","SAME_PACKAGE"},{"default","DIFFERENT_PACKAGE"},{"protected","SAME_PACKAGE"},{"protected","SAME_CLASS"},{"public","DIFFERENT_PACKAGE"}};System.out.println(summarizeByModifier(a));}
+}
